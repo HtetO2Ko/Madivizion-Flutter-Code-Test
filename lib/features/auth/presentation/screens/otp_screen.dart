@@ -5,13 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../app/router/route_names.dart';
 import '../../../../core/storage/session_storage.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/widgets/terms_and_service.dart';
 import '../../../../injection_container.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../widgets/auth/auth_background.dart';
 import '../widgets/auth/auth_header.dart';
 import '../widgets/otp_form.dart';
 import '../bloc/otp/otp_bloc.dart';
+import '../widgets/terms_container.dart';
 
 class OtpScreen extends StatelessWidget {
   final String phoneNumber;
@@ -89,13 +89,7 @@ class OtpScreen extends StatelessWidget {
               ),
             ),
           ),
-          bottomNavigationBar: const SafeArea(
-            top: false,
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 20),
-              child: TermsAndService(),
-            ),
-          ),
+          bottomNavigationBar: TermsContainer(),
         ),
       ),
     );

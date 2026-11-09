@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:j_donut/core/theme/app_text_styles.dart';
 
 import '../../../../core/storage/session_storage.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../auth/domain/entities/auth.dart';
 import '../../../auth/domain/repositories/auth_repository.dart';
 import '../../../../injection_container.dart';
+import '../widgets/banner_carousel.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,7 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("J'Donuts")),
       body: FutureBuilder<Auth?>(
         future: _userFuture,
         builder: (context, snapshot) {
@@ -56,30 +58,134 @@ class _HomeScreenState extends State<HomeScreen> {
             return const Center(child: Text('User not found.'));
           }
 
-          return Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Welcome, ${user.firstName}!',
-                  style: const TextStyle(
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 370,
+                width: MediaQuery.of(context).size.width,
+                clipBehavior: Clip.antiAlias,
+                decoration: const BoxDecoration(
+                  color: Color(0xFFBFDDF0),
+                  borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(30),
                   ),
                 ),
-                const SizedBox(height: 16),
-                Text('First name: ${user.firstName}'),
-                Text('Last name: ${user.lastName}'),
-                Text('Phone: ${user.phone}'),
-                Text(
-                  'Date of birth: '
-                  '${user.dateOfBirth.day}/'
-                  '${user.dateOfBirth.month}/'
-                  '${user.dateOfBirth.year}',
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 80),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                height: 60,
+                                width: 60,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(35),
+                                  color: Color(0xFF8CC0EB),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    user.firstName.substring(0, 1),
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
+                                      height: 1.2,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 13),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '${user.firstName} ${user.lastName}',
+                                    style: AppTextStyles.heading,
+                                  ),
+                                  Text(
+                                    'Bronze member',
+                                    style: AppTextStyles.subheading,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 3,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFF69D39),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(15),
+                                bottomLeft: Radius.circular(15),
+                              ),
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.notifications_outlined,
+                                  size: 28,
+                                  color: Colors.white,
+                                ),
+                                Container(
+                                  height: 18,
+                                  width: 18,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(9),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      "0",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    Container(
+                      margin: const EdgeInsets.only(left: 15),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 3,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        '1290 points left to become Gold Member',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: AppColors.textPrimary,
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+                    const BannerCarousel(),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           );
         },
       ),

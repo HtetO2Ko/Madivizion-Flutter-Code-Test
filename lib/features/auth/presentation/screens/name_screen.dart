@@ -4,11 +4,11 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../app/router/route_names.dart';
 import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/widgets/terms_and_service.dart';
 import '../bloc/name/name_bloc.dart';
 import '../widgets/auth/auth_background.dart';
 import '../widgets/auth/auth_header.dart';
 import '../widgets/name_form.dart';
+import '../widgets/terms_container.dart';
 
 class NameScreen extends StatelessWidget {
   final String phoneNumber;
@@ -86,13 +86,7 @@ class NameScreen extends StatelessWidget {
               ),
             ),
           ),
-          bottomNavigationBar: const SafeArea(
-            top: false,
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 20),
-              child: TermsAndService(),
-            ),
-          ),
+          bottomNavigationBar: TermsContainer(),
         ),
       ),
     );

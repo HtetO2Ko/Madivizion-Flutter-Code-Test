@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/widgets/terms_and_service.dart';
 import '../bloc/date_of_birth/date_of_birth_bloc.dart';
 import '../widgets/auth/auth_background.dart';
 import '../widgets/auth/auth_header.dart';
 import '../widgets/date_of_birth_form.dart';
+import '../widgets/terms_container.dart';
 
 class DateOfBirthScreen extends StatelessWidget {
   final String phoneNumber;
@@ -53,12 +53,7 @@ class DateOfBirthScreen extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: const SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 20),
-            child: TermsAndService(),
-          ),
-        ),
+        bottomNavigationBar: TermsContainer(),
       ),
     );
   }
