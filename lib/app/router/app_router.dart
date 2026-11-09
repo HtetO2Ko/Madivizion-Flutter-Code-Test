@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:j_donut/features/welcome/presentation/screens/welcome_screen.dart';
 
 import '../../features/auth/presentation/screens/date_of_birth_screen.dart';
 import '../../features/auth/presentation/screens/name_screen.dart';
@@ -70,6 +71,14 @@ class AppRouter {
             firstName: state.uri.queryParameters['firstName'] ?? '',
             lastName: state.uri.queryParameters['lastName'] ?? '',
           );
+        },
+      ),
+
+      GoRoute(
+        path: '/welcome',
+        name: AppRouteNames.welcome,
+        builder: (context, state) {
+          return WelcomeScreen();
         },
       ),
     ],
