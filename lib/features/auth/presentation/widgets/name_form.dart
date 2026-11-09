@@ -8,7 +8,7 @@ import '../bloc/name/name_state.dart';
 class NameForm extends StatefulWidget {
   final String firstName;
   final String lastName;
-  final void Function() onContinue;
+  final void Function(String firstName, String lastName) onContinue;
 
   const NameForm({
     super.key,
@@ -103,7 +103,14 @@ class _NameFormState extends State<NameForm> {
               width: double.infinity,
               height: 76,
               child: ElevatedButton(
-                onPressed: state.isValid ? widget.onContinue : null,
+                onPressed: state.isValid
+                    ? () {
+                        widget.onContinue(
+                          state.firstName.trim(),
+                          state.lastName.trim(),
+                        );
+                      }
+                    : null,
                 child: const Text('Continue'),
               ),
             ),

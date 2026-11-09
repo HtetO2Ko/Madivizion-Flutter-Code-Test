@@ -62,7 +62,10 @@ class OtpScreen extends StatelessWidget {
                     OtpForm(
                       onVerified: (otp) {
                         if (flow == AuthFlow.register) {
-                          context.pushReplacementNamed(AppRouteNames.name);
+                          context.pushReplacementNamed(
+                            AppRouteNames.name,
+                            queryParameters: {'phone': phoneNumber},
+                          );
                         } else {
                           debugPrint("Go To Home");
                           // context.goNamed(AppRouteNames.home);

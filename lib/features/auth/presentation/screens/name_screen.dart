@@ -67,15 +67,15 @@ class NameScreen extends StatelessWidget {
                       child: NameForm(
                         firstName: initialFirstName,
                         lastName: initialLastName,
-                        onContinue: () {
+                        onContinue: (firstName, lastName) {
                           FocusManager.instance.primaryFocus?.unfocus();
-      
+
                           context.pushNamed(
                             AppRouteNames.dateOfBirth,
                             queryParameters: {
                               'phone': phoneNumber,
-                              'firstName': initialFirstName,
-                              'lastName': initialLastName,
+                              'firstName': firstName,
+                              'lastName': lastName,
                             },
                           );
                         },

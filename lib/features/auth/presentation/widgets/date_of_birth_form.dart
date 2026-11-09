@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:j_donut/features/auth/data/repositories/auth_repository_impl.dart';
 
 import '../../../../app/router/route_names.dart';
+import '../../../../core/database/app_database.dart';
+import '../../../../core/storage/session_storage.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
+import '../../data/datasources/auth_local_data_source.dart';
+import '../../domain/entities/auth.dart';
 import '../bloc/date_of_birth/date_of_birth_bloc.dart';
 import '../bloc/date_of_birth/date_of_birth_event.dart';
 import '../bloc/date_of_birth/date_of_birth_state.dart';
@@ -117,17 +122,42 @@ class DateOfBirthForm extends StatelessWidget {
                         height: 76,
                         child: ElevatedButton(
                           onPressed: state.isValid
-                              ? () {
-                                  context.pushNamed(
-                                    AppRouteNames.welcome,
-                                    queryParameters: {
-                                      'phone': phoneNumber,
-                                      'firstName': firstName,
-                                      'lastName': lastName,
-                                      'dateOfBirth': state.dateOfBirth!
-                                          .toIso8601String(),
-                                    },
+                              ? () async {
+                                  final userRepository = AuthRepositoryImpl(
+                                    AuthLocalDataSource(AppDatabase.instance),
                                   );
+
+                                  final user = Auth(
+                                    phone: phoneNumber,
+                                    firstName: firstName,
+                                    lastName: lastName,
+                                    dateOfBirth: state.dateOfBirth!,
+                                    createdAt: DateTime.now(),
+                                  );
+
+                                  try {
+                                    await userRepository.saveUser(user);
+                                    await SessionStorage.savePhoneNumber(
+                                      phoneNumber,
+                                    );
+
+                                    if (!context.mounted) return;
+
+                                    context.goNamed(
+                                      AppRouteNames.welcome,
+                                      queryParameters: {'phone': phoneNumber},
+                                    );
+                                  } catch (error) {
+                                    if (!context.mounted) return;
+
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text(
+                                          'Unable to save your information.',
+                                        ),
+                                      ),
+                                    );
+                                  }
                                 }
                               : null,
                           child: const Text('Continue'),

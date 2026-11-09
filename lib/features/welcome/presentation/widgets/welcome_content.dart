@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../app/router/route_names.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 
 class WelcomeContent extends StatelessWidget {
-  const WelcomeContent({super.key});
+  final String phoneNumber;
+  const WelcomeContent({super.key, required this.phoneNumber});
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +55,10 @@ class WelcomeContent extends StatelessWidget {
         height: AppSpacing.buttonHeight,
         child: ElevatedButton(
           onPressed: () {
-            // context.pushNamed(
-            //   AppRouteNames.phoneNumber,
-            //   pathParameters: {'flow': 'register'},
-            // );
+            context.pushNamed(
+              AppRouteNames.home,
+              queryParameters: {'phone': phoneNumber},
+            );
           },
           child: const Text("LET'S EXPLORE"),
         ),

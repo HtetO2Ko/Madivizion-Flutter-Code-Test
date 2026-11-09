@@ -1,8 +1,10 @@
 import 'package:go_router/go_router.dart';
 import 'package:j_donut/features/welcome/presentation/screens/welcome_screen.dart';
 
+import '../../features/auth/presentation/screens/app_startup_screen.dart';
 import '../../features/auth/presentation/screens/date_of_birth_screen.dart';
 import '../../features/auth/presentation/screens/name_screen.dart';
+import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../features/auth/presentation/screens/phone_number_screen.dart';
 import '../../features/auth/presentation/screens/otp_screen.dart';
@@ -14,8 +16,14 @@ class AppRouter {
   AppRouter._();
 
   static final GoRouter router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/splash',
     routes: [
+      GoRoute(
+        path: '/splash',
+        name: 'splash',
+        builder: (context, state) => const AppStartupScreen(),
+      ),
+
       GoRoute(
         path: '/',
         name: AppRouteNames.onboarding,
@@ -75,10 +83,22 @@ class AppRouter {
       ),
 
       GoRoute(
-        path: '/welcome',
         name: AppRouteNames.welcome,
+        path: '/welcome',
         builder: (context, state) {
-          return WelcomeScreen();
+          return WelcomeScreen(
+            phoneNumber: state.uri.queryParameters['phone'] ?? '',
+          );
+        },
+      ),
+
+      GoRoute(
+        name: AppRouteNames.home,
+        path: '/home',
+        builder: (context, state) {
+          return HomeScreen(
+            phoneNumber: state.uri.queryParameters['phone'] ?? '',
+          );
         },
       ),
     ],
