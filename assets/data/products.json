@@ -6,7 +6,8 @@
     "priceMmk": 3200,
     "isNew": true,
     "discountPercent": null,
-    "image": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/cake-coconut.png",
+    "localImagePath": null,
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/cake-coconut.png",
     "description": "Enjoy our scrumptious donuts-soft, sweet, and satisfying in every bite. Choose from classic glazed, rich, chocolate, or fun sprinkles. Dive into deliciousness now!"
   },
   {
@@ -16,7 +17,8 @@
     "priceMmk": 3200,
     "isNew": true,
     "discountPercent": 20,
-    "image": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/custard-chocolate-bun.png",
+    "localImagePath": null,
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/custard-chocolate-bun.png",
     "description": "A fluffy baked bun stuffed with smooth custard cream and rich chocolate drizzle for a sweet, creamy center."
   },
   {
@@ -26,7 +28,8 @@
     "priceMmk": 3200,
     "isNew": true,
     "discountPercent": 10,
-    "image": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/fancy-nabi.png",
+    "localImagePath": null,
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/fancy-nabi.png",
     "description": "A charming butterfly-shaped donut decorated with colorful icing and sweet toppings for an extra fun treat."
   },
   {
@@ -36,7 +39,8 @@
     "priceMmk": 3200,
     "isNew": true,
     "discountPercent": 10,
-    "image": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/filling-blueberry.png",
+    "localImagePath": null,
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/filling-blueberry.png",
     "description": "Bursting with real blueberry jam inside a soft, pillowy donut and topped with a light sugar dusting."
   },
   {
@@ -46,7 +50,8 @@
     "priceMmk": 2500,
     "isNew": true,
     "discountPercent": null,
-    "image": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/j-bites-chocolate.png",
+    "localImagePath": null,
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/j-bites-chocolate.png",
     "description": "Bite-sized chocolate donuts packed with rich cocoa flavor and finished with a smooth chocolate coating."
   },
   {
@@ -56,7 +61,8 @@
     "priceMmk": 2500,
     "isNew": true,
     "discountPercent": null,
-    "image": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/j-bites-vanilla.png",
+    "localImagePath": null,
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/j-bites-vanilla.png",
     "description": "Delicately soft bite-sized donuts coated in classic vanilla glaze. A light and delicious sweet treat."
   },
   {
@@ -66,7 +72,8 @@
     "priceMmk": 3500,
     "isNew": true,
     "discountPercent": null,
-    "image": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/mirror-glazing-blue.png",
+    "localImagePath": null,
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/mirror-glazing-blue.png",
     "description": "A visually stunning donut featuring a glossy, vibrant blue mirror glaze over a soft, fluffy ring."
   },
   {
@@ -76,7 +83,8 @@
     "priceMmk": 3500,
     "isNew": true,
     "discountPercent": null,
-    "image": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/monster-flake-green.png",
+    "localImagePath": null,
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/monster-flake-green.png",
     "description": "Fun and vibrant donut topped with lively green frosting and crunchy flavored flakes for an exciting texture."
   },
   {
@@ -85,8 +93,9 @@
     "name": "Plain Ring Donut",
     "priceMmk": 2200,
     "isNew": false,
-    "discountPercent": null,
-    "image": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/plain-ring-donut.png",
+    "discountPercent": 33,
+    "localImagePath": null,
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/plain-ring-donut.png",
     "description": "The iconic classic. Golden-brown, airy ring donut crafted to simple perfection with a delicate glaze touch."
   },
   {
@@ -95,8 +104,9 @@
     "name": "Monster Yellow Flake",
     "priceMmk": 3500,
     "isNew": true,
-    "discountPercent": null,
-    "image": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/monster-yellow-flake.png",
+    "discountPercent": 20,
+    "localImagePath": null,
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/monster-yellow-flake.png",
     "description": "Bright yellow frosted donut generously covered with crispy flakes for a sweet, crunchy bite every time."
   }
 ]

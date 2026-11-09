@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -11,6 +10,8 @@ class AppDatabase {
   static const int _databaseVersion = 1;
 
   static const String userTable = 'users';
+  static const String productTable = 'products';
+  static const String bannerTable = 'banners';
 
   Database? _database;
 
@@ -38,12 +39,33 @@ class AppDatabase {
             created_at TEXT NOT NULL
           )
         ''');
+
+        await db.execute('''
+      CREATE TABLE $productTable (
+        id TEXT PRIMARY KEY,
+        code TEXT NOT NULL,
+        name TEXT NOT NULL,
+        price_mmk INTEGER NOT NULL,
+        is_new INTEGER NOT NULL DEFAULT 0,
+        discount_percent INTEGER,
+        image_url TEXT NOT NULL,
+        local_image_path TEXT,
+        description TEXT NOT NULL
+      )
+    ''');
+
+        await db.execute('''
+  CREATE TABLE $bannerTable (
+    id TEXT PRIMARY KEY,
+    image_url TEXT NOT NULL,
+    local_image_path TEXT
+  )
+''');
       },
     );
   }
 
   Future<void> deleteDatabaseFile() async {
-    debugPrint("Deleting Database");
     await _database?.close();
     _database = null;
 
@@ -51,12 +73,12 @@ class AppDatabase {
     final path = join(databasePath, _databaseName);
 
     await deleteDatabase(path);
-    debugPrint("Deleting Database Done");
   }
 
   Future<void> deleteAllTables() async {
     final db = await database;
 
     await db.delete(userTable);
+    await db.delete(productTable);
   }
 }

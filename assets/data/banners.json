@@ -1,0 +1,27 @@
+[
+  {
+    "id": "b_1",
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/banners/1.png",
+    "localImagePath": null
+  },
+  {
+    "id": "b_2",
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/banners/2.png",
+    "localImagePath": null
+  },
+  {
+    "id": "b_3",
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/banners/3.png",
+    "localImagePath": null
+  },
+  {
+    "id": "b_4",
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/banners/4.png",
+    "localImagePath": null
+  },
+  {
+    "id": "b_5",
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/banners/5.png",
+    "localImagePath": null
+  }
+]

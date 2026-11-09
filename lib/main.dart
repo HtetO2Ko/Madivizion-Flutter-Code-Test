@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
-// import 'package:j_donut/core/database/app_database.dart';
-import 'package:j_donut/injection_container.dart';
 
 import 'app/app.dart';
+import 'core/database/banner_seeder.dart';
+import 'core/database/product_seeder.dart';
+import 'injection_container.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await AppDatabase.instance.deleteDatabaseFile();
   await setupDependencies();
+
+  // seed data on first launch.
+  await getIt<ProductSeeder>().seedIfNeeded();
+  await getIt<BannerSeeder>().seedIfNeeded();
   runApp(const JDonutApp());
 }
