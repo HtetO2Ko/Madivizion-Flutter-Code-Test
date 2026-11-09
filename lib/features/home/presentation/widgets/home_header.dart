@@ -2,6 +2,7 @@ import 'package:flutter/material.dart' hide Banner;
 
 import '../../../auth/domain/entities/auth.dart';
 import '../../domain/entities/banner.dart';
+import '../../domain/entities/member.dart';
 import 'banner_carousel.dart';
 import 'member_info.dart';
 import 'notification_button.dart';
@@ -9,9 +10,15 @@ import 'points_progress_label.dart';
 
 class HomeHeader extends StatelessWidget {
   final Auth user;
+  final Member member;
   final List<Banner> banners;
 
-  const HomeHeader({super.key, required this.user, required this.banners});
+  const HomeHeader({
+    super.key,
+    required this.user,
+    required this.member,
+    required this.banners,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,17 +39,20 @@ class HomeHeader extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                MemberInfo(user: user),
-                const NotificationButton(),
+                MemberInfo(
+                  user: user,
+                  // Pass member tier if MemberInfo is updated to accept it.
+                ),
+                NotificationButton(count: member.notificationCount),
               ],
             ),
           ),
           const SizedBox(height: 15),
           Padding(
             padding: const EdgeInsets.only(left: 15),
-            child: const PointsProgressLabel(
-              pointsRemaining: 1290,
-              nextTier: 'Gold',
+            child: PointsProgressLabel(
+              pointsRemaining: member.pointsToNextTier,
+              nextTier: member.nextTier,
             ),
           ),
           const SizedBox(height: 20),

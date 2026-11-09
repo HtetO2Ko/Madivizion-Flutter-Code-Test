@@ -7,11 +7,12 @@ class AppDatabase {
   static final AppDatabase instance = AppDatabase._();
 
   static const String _databaseName = 'j_donut.db';
-  static const int _databaseVersion = 1;
+  static const int _databaseVersion = 2;
 
   static const String userTable = 'users';
   static const String productTable = 'products';
   static const String bannerTable = 'banners';
+  static const String memberTable = 'members';
 
   Database? _database;
 
@@ -61,6 +62,21 @@ class AppDatabase {
     local_image_path TEXT
   )
 ''');
+      },
+
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion < 2) {
+          await db.execute('''
+      CREATE TABLE $memberTable (
+        id INTEGER PRIMARY KEY,
+        tier TEXT NOT NULL,
+        points INTEGER NOT NULL,
+        next_tier TEXT NOT NULL,
+        points_to_next_tier INTEGER NOT NULL,
+        notification_count INTEGER NOT NULL
+      )
+    ''');
+        }
       },
     );
   }

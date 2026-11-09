@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../injection_container.dart';
 import '../../../auth/domain/repositories/auth_repository.dart';
 import '../../domain/repositories/banner_repository.dart';
+import '../../domain/repositories/member_repository.dart';
 import '../bloc/home/home_bloc.dart';
 import '../bloc/home/home_event.dart';
 import '../bloc/home/home_state.dart';
@@ -18,6 +19,7 @@ class HomeScreen extends StatelessWidget {
       create: (_) => HomeBloc(
         authRepository: getIt<AuthRepository>(),
         bannerRepository: getIt<BannerRepository>(),
+        memberRepository: getIt<MemberRepository>(),
       )..add(HomeLoadedEvent()),
       child: const _HomeView(),
     );
@@ -45,9 +47,11 @@ class _HomeView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  HomeHeader(user: state.user, banners: state.banners),
-
-                  // Add your product sections here.
+                  HomeHeader(
+                    user: state.user,
+                    member: state.member,
+                    banners: state.banners,
+                  ),
                 ],
               ),
             );
