@@ -4,19 +4,14 @@ import 'package:j_donut/features/welcome/presentation/widgets/welcome_content.da
 import '../widgets/welcome_background.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  final String phoneNumber;
-
-  const WelcomeScreen({super.key, required this.phoneNumber});
+  const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
-        children: [
-          const WelcomeBackground(),
-          WelcomeContent(phoneNumber: phoneNumber),
-        ],
+        children: [const WelcomeBackground(), WelcomeContent()],
       ),
     );
   }

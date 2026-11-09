@@ -6,15 +6,12 @@ import '../../../../app/router/route_names.dart';
 import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/terms_and_service.dart';
 import '../bloc/phone/phone_number_bloc.dart';
-import '../models/auth_flow.dart';
 import '../widgets/auth/auth_background.dart';
 import '../widgets/auth/auth_header.dart';
 import '../widgets/phone_number_form.dart';
 
 class PhoneNumberScreen extends StatelessWidget {
-  final AuthFlow flow;
-
-  const PhoneNumberScreen({super.key, required this.flow});
+  const PhoneNumberScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +62,6 @@ class PhoneNumberScreen extends StatelessWidget {
                                   onContinue: (phoneNumber) {
                                     context.pushNamed(
                                       AppRouteNames.otp,
-                                      pathParameters: {'flow': flow.name},
                                       queryParameters: {'phone': phoneNumber},
                                     );
                                   },

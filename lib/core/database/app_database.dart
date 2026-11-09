@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -42,6 +43,7 @@ class AppDatabase {
   }
 
   Future<void> deleteDatabaseFile() async {
+    debugPrint("Deleting Database");
     await _database?.close();
     _database = null;
 
@@ -49,6 +51,7 @@ class AppDatabase {
     final path = join(databasePath, _databaseName);
 
     await deleteDatabase(path);
+    debugPrint("Deleting Database Done");
   }
 
   Future<void> deleteAllTables() async {

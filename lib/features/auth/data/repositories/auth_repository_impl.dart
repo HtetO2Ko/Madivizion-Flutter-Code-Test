@@ -22,7 +22,17 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Auth?> getUserByPhone(String phone) {
-    return localDataSource.getUserByPhone(phone);
+  Future<Auth?> getUserByPhone(String phone) async {
+    final result = await localDataSource.getUserByPhone(phone);
+
+    if (result == null) return null;
+
+    return Auth(
+      phone: result.phone,
+      firstName: result.firstName,
+      lastName: result.lastName,
+      dateOfBirth: result.dateOfBirth,
+      createdAt: result.createdAt,
+    );
   }
 }

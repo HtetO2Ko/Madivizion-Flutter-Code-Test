@@ -1,1 +1,0 @@
-enum AuthFlow { register, login }

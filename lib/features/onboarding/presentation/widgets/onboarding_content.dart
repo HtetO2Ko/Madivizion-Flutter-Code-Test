@@ -66,10 +66,7 @@ class OnboardingContent extends StatelessWidget {
             height: AppSpacing.buttonHeight,
             child: ElevatedButton(
               onPressed: () {
-                context.pushNamed(
-                  AppRouteNames.phoneNumber,
-                  pathParameters: {'flow': 'register'},
-                );
+                context.pushNamed(AppRouteNames.phoneNumber);
               },
               child: const Text("LET'S GET STARTED"),
             ),
@@ -88,10 +85,7 @@ class OnboardingContent extends StatelessWidget {
 
             GestureDetector(
               onTap: () {
-                context.pushNamed(
-                  AppRouteNames.phoneNumber,
-                  pathParameters: {'flow': 'login'},
-                );
+                context.pushNamed(AppRouteNames.phoneNumber);
               },
               child: const Text(
                 'Log In',

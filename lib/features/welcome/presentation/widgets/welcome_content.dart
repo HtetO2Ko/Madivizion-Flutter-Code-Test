@@ -6,8 +6,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 
 class WelcomeContent extends StatelessWidget {
-  final String phoneNumber;
-  const WelcomeContent({super.key, required this.phoneNumber});
+  const WelcomeContent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,10 +54,7 @@ class WelcomeContent extends StatelessWidget {
         height: AppSpacing.buttonHeight,
         child: ElevatedButton(
           onPressed: () {
-            context.pushNamed(
-              AppRouteNames.home,
-              queryParameters: {'phone': phoneNumber},
-            );
+            context.goNamed(AppRouteNames.home);
           },
           child: const Text("LET'S EXPLORE"),
         ),

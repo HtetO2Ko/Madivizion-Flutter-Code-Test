@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/database/app_database.dart';
-import '../../../auth/data/datasources/auth_local_data_source.dart';
-import '../../../auth/data/repositories/auth_repository_impl.dart';
+import '../../../../core/storage/session_storage.dart';
 import '../../../auth/domain/entities/auth.dart';
+import '../../../auth/domain/repositories/auth_repository.dart';
+import '../../../../injection_container.dart';
 
 class HomeScreen extends StatefulWidget {
-  final String phoneNumber;
-
-  const HomeScreen({super.key, required this.phoneNumber});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -20,13 +18,19 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    _userFuture = _loadUser();
+  }
 
+  Future<Auth?> _loadUser() async {
+    final phoneNumber = await SessionStorage.getPhoneNumber();
 
-    final repository = AuthRepositoryImpl(
-      AuthLocalDataSource(AppDatabase.instance),
-    );
+    if (phoneNumber == null || phoneNumber.isEmpty) {
+      return null;
+    }
 
-    _userFuture = repository.getUserByPhone(widget.phoneNumber);
+    final repository = getIt<AuthRepository>();
+
+    return repository.getUserByPhone(phoneNumber);
   }
 
   @override

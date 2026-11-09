@@ -8,15 +8,13 @@ import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../features/auth/presentation/screens/phone_number_screen.dart';
 import '../../features/auth/presentation/screens/otp_screen.dart';
-
-import '../../features/auth/presentation/models/auth_flow.dart';
 import 'route_names.dart';
 
 class AppRouter {
   AppRouter._();
 
   static final GoRouter router = GoRouter(
-    initialLocation: '/splash',
+    initialLocation: '/',
     routes: [
       GoRoute(
         path: '/splash',
@@ -33,28 +31,19 @@ class AppRouter {
       ),
 
       GoRoute(
-        path: '/auth/phone/:flow',
+        path: '/auth/phone',
         name: AppRouteNames.phoneNumber,
         builder: (context, state) {
-          final flow = state.pathParameters['flow'];
-
-          return PhoneNumberScreen(
-            flow: flow == 'login' ? AuthFlow.login : AuthFlow.register,
-          );
+          return PhoneNumberScreen();
         },
       ),
 
       GoRoute(
-        path: '/auth/otp/:flow',
+        path: '/auth/otp',
         name: AppRouteNames.otp,
         builder: (context, state) {
-          final flow = state.pathParameters['flow'];
           final phoneNumber = state.uri.queryParameters['phone'] ?? '';
-
-          return OtpScreen(
-            phoneNumber: phoneNumber,
-            flow: flow == 'login' ? AuthFlow.login : AuthFlow.register,
-          );
+          return OtpScreen(phoneNumber: phoneNumber);
         },
       ),
 
@@ -86,9 +75,7 @@ class AppRouter {
         name: AppRouteNames.welcome,
         path: '/welcome',
         builder: (context, state) {
-          return WelcomeScreen(
-            phoneNumber: state.uri.queryParameters['phone'] ?? '',
-          );
+          return WelcomeScreen();
         },
       ),
 
@@ -96,9 +83,7 @@ class AppRouter {
         name: AppRouteNames.home,
         path: '/home',
         builder: (context, state) {
-          return HomeScreen(
-            phoneNumber: state.uri.queryParameters['phone'] ?? '',
-          );
+          return HomeScreen();
         },
       ),
     ],

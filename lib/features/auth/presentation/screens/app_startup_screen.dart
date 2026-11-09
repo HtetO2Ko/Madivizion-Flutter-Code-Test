@@ -42,10 +42,7 @@ class _AppStartupScreenState extends State<AppStartupScreen> {
       if (!mounted) return;
 
       if (user != null) {
-        context.goNamed(
-          AppRouteNames.home,
-          queryParameters: {'phone': phoneNumber},
-        );
+        context.goNamed(AppRouteNames.home);
       } else {
         await SessionStorage.clearSession();
 

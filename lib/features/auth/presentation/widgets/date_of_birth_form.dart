@@ -143,10 +143,7 @@ class DateOfBirthForm extends StatelessWidget {
 
                                     if (!context.mounted) return;
 
-                                    context.goNamed(
-                                      AppRouteNames.welcome,
-                                      queryParameters: {'phone': phoneNumber},
-                                    );
+                                    context.goNamed(AppRouteNames.welcome);
                                   } catch (error) {
                                     if (!context.mounted) return;
 
