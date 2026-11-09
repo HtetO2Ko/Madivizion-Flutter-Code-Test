@@ -42,7 +42,7 @@ class _AppStartupScreenState extends State<AppStartupScreen> {
       if (!mounted) return;
 
       if (user != null) {
-        context.goNamed(AppRouteNames.home);
+        context.goNamed(AppRouteNames.tabbar);
       } else {
         await SessionStorage.clearSession();
 

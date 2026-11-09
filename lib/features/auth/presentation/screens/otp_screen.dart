@@ -30,7 +30,7 @@ class OtpScreen extends StatelessWidget {
 
         if (!context.mounted) return;
 
-        context.goNamed(AppRouteNames.home);
+        context.goNamed(AppRouteNames.tabbar);
       } else {
         context.pushReplacementNamed(
           AppRouteNames.name,

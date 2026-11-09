@@ -1,10 +1,10 @@
 import 'package:go_router/go_router.dart';
+import 'package:j_donut/features/tabbar/presentation/screens/tabbar_screen.dart';
 import 'package:j_donut/features/welcome/presentation/screens/welcome_screen.dart';
 
 import '../../features/auth/presentation/screens/app_startup_screen.dart';
 import '../../features/auth/presentation/screens/date_of_birth_screen.dart';
 import '../../features/auth/presentation/screens/name_screen.dart';
-import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../features/auth/presentation/screens/phone_number_screen.dart';
 import '../../features/auth/presentation/screens/otp_screen.dart';
@@ -81,10 +81,10 @@ class AppRouter {
       ),
 
       GoRoute(
-        name: AppRouteNames.home,
-        path: '/home',
+        name: AppRouteNames.tabbar,
+        path: '/tabbar',
         builder: (context, state) {
-          return HomeScreen();
+          return TabbarScreen();
         },
       ),
 

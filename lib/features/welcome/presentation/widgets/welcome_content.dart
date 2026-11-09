@@ -54,7 +54,7 @@ class WelcomeContent extends StatelessWidget {
         height: AppSpacing.buttonHeight,
         child: ElevatedButton(
           onPressed: () {
-            context.goNamed(AppRouteNames.home);
+            context.goNamed(AppRouteNames.tabbar);
           },
           child: const Text("LET'S EXPLORE"),
         ),

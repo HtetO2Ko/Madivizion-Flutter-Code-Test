@@ -8,6 +8,6 @@ class AppRouteNames {
   static const String dateOfBirth = 'date-of-birth';
 
   static const String welcome = 'welcome';
-  static const String home = 'home';
+  static const String tabbar = 'tabbar';
   static const String productDetail = 'product-detail';
 }
