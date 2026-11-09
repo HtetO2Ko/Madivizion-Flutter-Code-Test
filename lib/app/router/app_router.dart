@@ -8,6 +8,7 @@ import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
 import '../../features/auth/presentation/screens/phone_number_screen.dart';
 import '../../features/auth/presentation/screens/otp_screen.dart';
+import '../../features/product/presentation/screens/product_detail_screen.dart';
 import 'route_names.dart';
 
 class AppRouter {
@@ -84,6 +85,15 @@ class AppRouter {
         path: '/home',
         builder: (context, state) {
           return HomeScreen();
+        },
+      ),
+
+      GoRoute(
+        path: '/product/:id',
+        name: AppRouteNames.productDetail,
+        builder: (context, state) {
+          final productId = state.pathParameters['id']!;
+          return ProductDetailScreen(productId: productId);
         },
       ),
     ],

@@ -10,10 +10,24 @@ class ProductRepositoryImpl implements ProductRepository {
   ProductRepositoryImpl({required this.localDataSource, required this.seeder});
 
   @override
+  Future<Product?> getProductById(String id) async {
+    final model = await localDataSource.getProductById(id);
+    return Product(
+      id: model!.id,
+      code: model.code,
+      name: model.name,
+      priceMmk: model.priceMmk,
+      isNew: model.isNew,
+      discountPercent: model.discountPercent,
+      imageUrl: model.imageUrl,
+      localImagePath: model.localImagePath,
+      description: model.description,
+    );
+  }
+
+  @override
   Future<List<Product>> getProducts() async {
-    print("Testing....");
     final models = await localDataSource.getProducts();
-    print(models);
 
     return models.map((model) {
       return Product(

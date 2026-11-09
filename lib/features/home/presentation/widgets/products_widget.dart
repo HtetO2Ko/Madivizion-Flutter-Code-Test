@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../app/router/route_names.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../domain/entities/product.dart';
 
@@ -62,75 +64,83 @@ class ProductWidget extends StatelessWidget {
             itemBuilder: (context, index) {
               final product = products[index];
 
-              return Padding(
-                padding: const EdgeInsets.only(right: 12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Stack(
-                      children: [
-                        Container(
-                          height: (size['height'] as num).toDouble(),
-                          width: (size['width'] as num).toDouble(),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15),
+              return GestureDetector(
+                onTap: () {
+                  context.pushNamed(
+                    AppRouteNames.productDetail,
+                    pathParameters: {'id': product.id},
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Stack(
+                        children: [
+                          Container(
+                            height: (size['height'] as num).toDouble(),
+                            width: (size['width'] as num).toDouble(),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15),
+                              child:
+                                  product.localImagePath != null &&
+                                      product.localImagePath!.isNotEmpty
+                                  ? Image.file(
+                                      File(product.localImagePath!),
+                                      fit: BoxFit.contain,
+                                      errorBuilder: (_, __, ___) =>
+                                          const Icon(Icons.image_not_supported),
+                                    )
+                                  : const Icon(Icons.image_not_supported),
+                            ),
                           ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(15),
-                            child:
-                                product.localImagePath != null &&
-                                    product.localImagePath!.isNotEmpty
-                                ? Image.file(
-                                    File(product.localImagePath!),
-                                    fit: BoxFit.contain,
-                                    errorBuilder: (_, __, ___) =>
-                                        const Icon(Icons.image_not_supported),
-                                  )
-                                : const Icon(Icons.image_not_supported),
-                          ),
-                        ),
 
-                        if (product.discountPercent != null)
-                          Positioned(
-                            bottom: 10,
-                            right: 10,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 7,
-                              ),
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFF69D39),
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Text(
-                                '${product.discountPercent}% OFF',
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
+                          if (product.discountPercent != null)
+                            Positioned(
+                              bottom: 10,
+                              right: 10,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 12,
+                                  vertical: 7,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFF69D39),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Text(
+                                  '${product.discountPercent}% OFF',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    SizedBox(
-                      width: (size['width'] as num).toDouble(),
-                      child: Text(
-                        product.name,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: AppColors.textPrimary,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                        ],
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 8),
+                      SizedBox(
+                        width: (size['width'] as num).toDouble(),
+                        child: Text(
+                          product.name,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: AppColors.textPrimary,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             },

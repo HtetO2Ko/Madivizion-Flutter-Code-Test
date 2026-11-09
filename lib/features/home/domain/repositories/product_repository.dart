@@ -4,4 +4,6 @@ abstract class ProductRepository {
   Future<List<Product>> getProducts();
 
   Future<void> seedProducts();
+
+  Future<Product?> getProductById(String id);
 }

@@ -52,4 +52,19 @@ class ProductLocalDataSource {
 
     return (result.first['count'] as int) > 0;
   }
+
+  Future<ProductModel?> getProductById(String id) async {
+    final db = await appDatabase.database;
+
+    final result = await db.query(
+      AppDatabase.productTable,
+      where: 'id = ?',
+      whereArgs: [id],
+      limit: 1,
+    );
+
+    if (result.isEmpty) return null;
+
+    return ProductModel.fromMap(result.first);
+  }
 }

@@ -9,4 +9,5 @@ class AppRouteNames {
 
   static const String welcome = 'welcome';
   static const String home = 'home';
+  static const String productDetail = 'product-detail';
 }
