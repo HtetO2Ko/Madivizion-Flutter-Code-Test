@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart' hide Banner;
-import '../../domain/entities/banner.dart';
+import '../../../domain/entities/banner.dart';
 import 'banner_image.dart';
 
 class BannerCarousel extends StatefulWidget {

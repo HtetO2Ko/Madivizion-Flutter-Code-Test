@@ -1,10 +1,10 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart' hide Banner;
 
-import '../../domain/entities/banner.dart';
+import '../../../domain/entities/banner.dart';
 import 'banner_placeholder.dart';
+import 'banner_skeleton.dart';
 
 class BannerImage extends StatelessWidget {
   final Banner banner;
@@ -32,7 +32,7 @@ class BannerImage extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         fit: BoxFit.cover,
-        placeholder: (_, __) => _loadingPlaceholder(),
+        placeholder: (_, __) => const BannerSkeleton(),
         errorWidget: (_, __, ___) => _assetImage(),
       );
     }
@@ -42,13 +42,5 @@ class BannerImage extends StatelessWidget {
 
   Widget _assetImage() {
     return const BannerPlaceholder();
-  }
-
-  Widget _loadingPlaceholder() {
-    return Container(
-      color: Colors.grey.shade200,
-      alignment: Alignment.center,
-      child: const CircularProgressIndicator(),
-    );
   }
 }

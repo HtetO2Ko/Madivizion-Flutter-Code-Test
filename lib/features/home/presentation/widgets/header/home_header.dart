@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart' hide Banner;
 
-import '../../../auth/domain/entities/auth.dart';
-import '../../domain/entities/banner.dart';
-import '../../domain/entities/member.dart';
+import '../../../../auth/domain/entities/auth.dart';
+import '../../../domain/entities/banner.dart';
+import '../../../domain/entities/member.dart';
 import 'banner_carousel.dart';
 import 'member_info.dart';
 import 'notification_button.dart';
@@ -39,10 +39,7 @@ class HomeHeader extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                MemberInfo(
-                  user: user,
-                  // Pass member tier if MemberInfo is updated to accept it.
-                ),
+                MemberInfo(user: user, tier: member.tier),
                 NotificationButton(count: member.notificationCount),
               ],
             ),

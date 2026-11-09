@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/app_text_styles.dart';
-import '../../../auth/domain/entities/auth.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_text_styles.dart';
+import '../../../../auth/domain/entities/auth.dart';
 
 class MemberInfo extends StatelessWidget {
   final Auth user;
+  final String tier;
 
-  const MemberInfo({super.key, required this.user});
+  const MemberInfo({super.key, required this.user, required this.tier});
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +40,13 @@ class MemberInfo extends StatelessWidget {
           children: [
             Text(
               '${user.firstName} ${user.lastName}'.trim(),
-              style: AppTextStyles.heading,
+              style: TextStyle(
+                fontSize: 23,
+                fontWeight: FontWeight.w500,
+                color: AppColors.textPrimary,
+              ),
             ),
-            Text('Bronze member', style: AppTextStyles.subheading),
+            Text('$tier member', style: AppTextStyles.subheading),
           ],
         ),
       ],

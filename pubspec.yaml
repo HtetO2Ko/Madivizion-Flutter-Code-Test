@@ -44,6 +44,7 @@ dependencies:
   dio: ^5.11.1
   path_provider: ^2.1.6
   cached_network_image: ^4.0.6
+  skeletonizer: ^3.0.0
 
 dev_dependencies:
   flutter_test:
