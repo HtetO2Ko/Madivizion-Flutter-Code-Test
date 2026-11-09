@@ -1,0 +1,12 @@
+[
+  {
+    "id": "p_cake",
+    "code": "JD022123",
+    "name": "Cake Donut",
+    "priceMmk": 3200,
+    "isNew": true,
+    "discountPercent": null,
+    "image": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/cake-coconut.png",
+    "description": "Enjoy our delicious Cake donut."
+  }
+]
