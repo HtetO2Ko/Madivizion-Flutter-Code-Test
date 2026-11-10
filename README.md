@@ -1,17 +1,7 @@
-# j_donut
+## Flutter Version
 
-A new Flutter project.
+- **Flutter:** 3.47.9
 
-## Getting Started
+## State Management
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+I chose BLoC over Riverpod because I am more familiar and flexible with BLoC. Since this project involves complex business logic, BLoC's event-driven architecture provides a structured way to handle events and state transitions, making the application more predictable, maintainable, and scalable.
