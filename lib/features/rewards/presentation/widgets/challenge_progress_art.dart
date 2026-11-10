@@ -2,6 +2,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/app_colors.dart';
+
 import '../models/reward_challenge.dart';
 
 class ChallengeProgressArt extends StatelessWidget {
@@ -100,8 +102,8 @@ class _ChallengePainter extends CustomPainter {
     // Sprinkles on the completed portion.
     const sprinkleColors = [
       Color(0xFFFFD95A),
-      Color(0xFF55C9E5),
-      Color(0xFFFF529A),
+      AppColors.primary,
+      AppColors.secondary,
       Colors.white,
     ];
 
@@ -142,7 +144,7 @@ class _ChallengePainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
 
     final progressPaint = Paint()
-      ..color = const Color(0xFFFF781B)
+      ..color = AppColors.accent
       ..style = PaintingStyle.stroke
       ..strokeWidth = 10
       ..strokeCap = StrokeCap.round;

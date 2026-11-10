@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/theme/app_colors.dart';
+
 import '../../../../../core/theme/app_text_styles.dart';
 import '../../../../auth/domain/entities/auth.dart';
 
@@ -22,7 +23,7 @@ class MemberInfo extends StatelessWidget {
           width: 60,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(35),
-            color: const Color(0xFF8CC0EB),
+            color: AppColors.info,
           ),
           alignment: Alignment.center,
           child: Text(

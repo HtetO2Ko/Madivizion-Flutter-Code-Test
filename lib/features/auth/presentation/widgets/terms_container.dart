@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/widgets/terms_and_service.dart';
 
 class TermsContainer extends StatelessWidget {
-  const new({super.key});
+  const TermsContainer({super.key});
 
   @override
   Widget build(BuildContext context) {

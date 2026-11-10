@@ -2,6 +2,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/app_colors.dart';
+
 import '../../../home/domain/entities/member.dart';
 
 class PointsRing extends StatelessWidget {
@@ -47,7 +49,7 @@ class PointsRing extends StatelessWidget {
                     const Text(
                       'Total points',
                       style: TextStyle(
-                        color: Color(0xFFFF529A),
+                        color: AppColors.secondary,
                         fontSize: 12,
                         fontWeight: FontWeight.w600,
                       ),
@@ -58,7 +60,7 @@ class PointsRing extends StatelessWidget {
                       style: const TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w900,
-                        color: Color(0xFFFF529A),
+                        color: AppColors.secondary,
                       ),
                     ),
                   ],
@@ -98,7 +100,7 @@ class _PointsRingPainter extends CustomPainter {
       ..strokeWidth = 24;
 
     final progressPaint = Paint()
-      ..color = const Color(0xFFFF529A)
+      ..color = AppColors.secondary
       ..style = PaintingStyle.stroke
       ..strokeWidth = 24
       ..strokeCap = StrokeCap.round;

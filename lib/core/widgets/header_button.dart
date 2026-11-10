@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/app_colors.dart';
+
 class HeaderButton extends StatelessWidget {
   final int count;
   final Widget child;
@@ -11,7 +13,7 @@ class HeaderButton extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
       decoration: const BoxDecoration(
-        color: Color(0xFFFF781B),
+        color: AppColors.accent,
         borderRadius: BorderRadius.horizontal(left: Radius.circular(35)),
       ),
       child: Row(

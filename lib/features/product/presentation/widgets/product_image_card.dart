@@ -1,6 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+
+import '../../../../core/widgets/app_local_image.dart';
+
+import '../../../../core/theme/app_colors.dart';
 
 import '../../../home/domain/entities/product.dart';
 import 'product_info.dart';
@@ -69,7 +71,7 @@ class ProductImageCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: const Color(0xFFF69D39),
+        color: AppColors.accent,
         borderRadius: BorderRadius.circular(20),
       ),
       child: const Text(
@@ -92,15 +94,10 @@ class ProductImageCard extends StatelessWidget {
       );
     }
 
-    return Image.file(
-      File(path),
+    return AppLocalImage(
+      path: path,
       width: double.infinity,
       fit: BoxFit.contain,
-      errorBuilder: (_, __, ___) {
-        return const Center(
-          child: Icon(Icons.image_not_supported, size: 60, color: Colors.grey),
-        );
-      },
     );
   }
 }

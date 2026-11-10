@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:j_donut/features/rewards/presentation/rewards_screen.dart';
 
+import '../../../setting/presentation/settings_screen.dart';
 import '../../../home/presentation/screens/home_screen.dart';
 import '../bloc/tabbar_bloc.dart';
 import '../bloc/tabbar_event.dart';
@@ -16,7 +17,7 @@ class TabbarScreen extends StatelessWidget {
     RewardsScreen(),
     Center(child: Text('Order Screen')),
     Center(child: Text('Wallet Screen')),
-    Center(child: Text('Settings Screen')),
+    SettingsScreen(),
   ];
 
   @override

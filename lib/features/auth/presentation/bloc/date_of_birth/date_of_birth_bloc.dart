@@ -7,6 +7,14 @@ import 'date_of_birth_state.dart';
 class DateOfBirthBloc extends Bloc<DateOfBirthEvent, DateOfBirthState> {
   DateOfBirthBloc() : super(const DateOfBirthState()) {
     on<DateOfBirthSelected>(_onDateSelected);
+
+    on<DateOfBirthLoadingStarted>((event, emit) {
+      emit(state.copyWith(isLoading: true));
+    });
+
+    on<DateOfBirthLoadingFinished>((event, emit) {
+      emit(state.copyWith(isLoading: false));
+    });
   }
 
   void _onDateSelected(

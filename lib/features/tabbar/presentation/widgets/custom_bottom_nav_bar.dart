@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/app_colors.dart';
+
 class CustomBottomNavBar extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onTap;
@@ -24,7 +26,7 @@ class CustomBottomNavBar extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 16),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
       decoration: const BoxDecoration(
-        color: Color(0xFF53C2ED),
+        color: AppColors.info,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(32),
           topRight: Radius.circular(32),
@@ -50,7 +52,7 @@ class CustomBottomNavBar extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? const Color(0xFFFF529A)
+                      ? AppColors.secondary
                       : Colors.transparent,
                   borderRadius: BorderRadius.circular(30),
                 ),

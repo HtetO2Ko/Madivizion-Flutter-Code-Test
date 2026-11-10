@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 import '../../features/home/data/datasources/banner_local_data_source.dart';
@@ -15,11 +16,13 @@ class BannerSeeder {
 
   Future<void> seedIfNeeded() async {
     final alreadySeeded = await localDataSource.hasBanners();
+    debugPrint("Banner Check Seeded");
 
     if (alreadySeeded) {
       await downloadMissingImages(await localDataSource.getBanners());
       return;
     }
+    debugPrint("Banner Seeding");
 
     final jsonString = await rootBundle.loadString('assets/data/banners.json');
 
@@ -30,6 +33,7 @@ class BannerSeeder {
         .toList();
 
     await localDataSource.insertBanners(banners);
+    debugPrint("Banner Seeded");
 
     await downloadMissingImages(await localDataSource.getBanners());
   }
@@ -42,14 +46,17 @@ class BannerSeeder {
         if (await existingFile.exists()) continue;
       }
 
-      final imagePath = await imageDownloader.download(
-        id: banner.id,
-        imageUrl: banner.imageUrl,
-      );
-
-      if (imagePath == null) continue;
-
-      await localDataSource.updateLocalImagePath(banner.id, imagePath);
+      try {
+        final imagePath = await imageDownloader.download(
+          id: banner.id,
+          imageUrl: banner.imageUrl,
+        );
+        if (imagePath != null) {
+          await localDataSource.updateLocalImagePath(banner.id, imagePath);
+        }
+      } catch (_) {
+        // Banner metadata remains available when an image cannot be cached.
+      }
     }
   }
 }

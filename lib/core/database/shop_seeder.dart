@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/services.dart';
 
@@ -39,21 +40,26 @@ class ShopSeeder {
 
     await Future.wait(
       shops.map((shop) async {
-        if (shop.localImagePath != null && shop.localImagePath!.isNotEmpty) {
+        if (shop.localImagePath != null &&
+            shop.localImagePath!.isNotEmpty &&
+            await File(shop.localImagePath!).exists()) {
           return;
         }
 
-        final localPath = await imageDownloader.download(
-          id: shop.id,
-          imageUrl: shop.imageUrl,
-        );
-
-        if (localPath == null) return;
-
-        await localDataSource.updateLocalImagePath(
-          id: shop.id,
-          localImagePath: localPath,
-        );
+        try {
+          final localPath = await imageDownloader.download(
+            id: shop.id,
+            imageUrl: shop.imageUrl,
+          );
+          if (localPath != null) {
+            await localDataSource.updateLocalImagePath(
+              id: shop.id,
+              localImagePath: localPath,
+            );
+          }
+        } catch (_) {
+          // Shop details remain available when its image cannot be cached.
+        }
       }),
     );
   }

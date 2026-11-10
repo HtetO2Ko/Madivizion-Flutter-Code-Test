@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_motion.dart';
+
 import '../../../home/domain/entities/member.dart';
 import 'shield_badge.dart';
 
@@ -65,7 +68,7 @@ class TierLadder extends StatelessWidget {
                   children: [
                     // Shield badge
                     AnimatedOpacity(
-                      duration: const Duration(milliseconds: 300),
+                      duration: AppMotion.duration(context, AppMotion.standard),
                       opacity: isCurrent ? 1.0 : 0.55,
                       child: ShieldBadge(type: _getBadgeType(index)),
                     ),
@@ -86,7 +89,7 @@ class TierLadder extends StatelessWidget {
 
                                 TweenAnimationBuilder<double>(
                                   tween: Tween(begin: 0, end: segmentProgress),
-                                  duration: const Duration(milliseconds: 1200),
+                                  duration: AppMotion.duration(context, AppMotion.slow),
                                   curve: Curves.easeInOut,
                                   builder: (context, value, child) {
                                     return Align(
@@ -94,7 +97,7 @@ class TierLadder extends StatelessWidget {
                                       child: Container(
                                         width: 3,
                                         height: constraints.maxHeight * value,
-                                        color: const Color(0xFFE85B5B),
+                                        color: AppColors.error,
                                       ),
                                     );
                                   },

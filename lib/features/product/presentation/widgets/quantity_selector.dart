@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../../../../core/theme/app_colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/quantity/quantity_bloc.dart';
@@ -29,7 +31,7 @@ class QuantitySelector extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               IconButton(
-                icon: const Icon(Icons.remove, color: Color(0xFF42C2ED)),
+                icon: const Icon(Icons.remove, color: AppColors.primary),
                 onPressed: state.quantity > 1
                     ? () {
                         context.read<QuantityBloc>().add(QuantityDecremented());
@@ -47,7 +49,7 @@ class QuantitySelector extends StatelessWidget {
                 ),
               ),
               IconButton(
-                icon: const Icon(Icons.add, color: Color(0xFF42C2ED)),
+                icon: const Icon(Icons.add, color: AppColors.primary),
                 onPressed: () {
                   context.read<QuantityBloc>().add(QuantityIncremented());
                 },

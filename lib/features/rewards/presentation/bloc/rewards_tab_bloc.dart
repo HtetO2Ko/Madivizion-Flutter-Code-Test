@@ -44,6 +44,7 @@ class RewardsBloc extends Bloc<RewardsEvent, RewardsState> {
 
     if (currentState is! RewardsSuccess) return;
     if (event.index < 0 || event.index > 1) return;
+    if (currentState.selectedTab == event.index) return;
 
     emit(
       currentState.copyWith(

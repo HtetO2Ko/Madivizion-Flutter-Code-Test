@@ -1,3 +1,4 @@
+import '../../../../../core/theme/app_colors.dart';
 import 'package:flutter/material.dart' hide Banner;
 
 import '../../../../auth/domain/entities/auth.dart';
@@ -12,12 +13,14 @@ class HomeHeader extends StatelessWidget {
   final Auth user;
   final Member member;
   final List<Banner> banners;
+  final String? bannerError;
 
   const HomeHeader({
     super.key,
     required this.user,
     required this.member,
     required this.banners,
+    this.bannerError,
   });
 
   @override
@@ -27,7 +30,7 @@ class HomeHeader extends StatelessWidget {
       width: double.infinity,
       clipBehavior: Clip.antiAlias,
       decoration: const BoxDecoration(
-        color: Color(0xFFBFDDF0),
+        color: AppColors.headerBackground,
         borderRadius: BorderRadius.only(bottomRight: Radius.circular(30)),
       ),
       child: Column(
@@ -53,7 +56,7 @@ class HomeHeader extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          BannerCarousel(banners: banners),
+          BannerCarousel(banners: banners, errorMessage: bannerError),
         ],
       ),
     );

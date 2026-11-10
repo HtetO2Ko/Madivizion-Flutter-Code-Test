@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:j_donut/features/auth/data/repositories/auth_repository_impl.dart';
 
 import '../../../../app/router/route_names.dart';
 import '../../../../core/database/app_database.dart';
+import '../../../../core/database/banner_seeder.dart';
+import '../../../../core/database/member_seeder.dart';
+import '../../../../core/database/product_seeder.dart';
+import '../../../../core/database/shop_seeder.dart';
 import '../../../../core/storage/session_storage.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_text_styles.dart';
+import '../../../../injection_container.dart';
 import '../../data/datasources/auth_local_data_source.dart';
+import '../../data/repositories/auth_repository_impl.dart';
 import '../../domain/entities/auth.dart';
 import '../bloc/date_of_birth/date_of_birth_bloc.dart';
 import '../bloc/date_of_birth/date_of_birth_event.dart';
@@ -121,7 +126,7 @@ class DateOfBirthForm extends StatelessWidget {
                         width: double.infinity,
                         height: 76,
                         child: ElevatedButton(
-                          onPressed: state.isValid
+                          onPressed: state.isValid && !state.isLoading
                               ? () async {
                                   final userRepository = AuthRepositoryImpl(
                                     AuthLocalDataSource(AppDatabase.instance),
@@ -135,17 +140,30 @@ class DateOfBirthForm extends StatelessWidget {
                                     createdAt: DateTime.now(),
                                   );
 
+                                  context.read<DateOfBirthBloc>().add(
+                                    DateOfBirthLoadingStarted(),
+                                  );
+
                                   try {
                                     await userRepository.saveUser(user);
                                     await SessionStorage.savePhoneNumber(
                                       phoneNumber,
                                     );
 
+                                    await getIt<ProductSeeder>().seedIfNeeded();
+                                    await getIt<BannerSeeder>().seedIfNeeded();
+                                    await getIt<MemberSeeder>().seedIfNeeded();
+                                    await getIt<ShopSeeder>().seedIfNeeded();
+
                                     if (!context.mounted) return;
 
                                     context.goNamed(AppRouteNames.welcome);
                                   } catch (error) {
                                     if (!context.mounted) return;
+
+                                    context.read<DateOfBirthBloc>().add(
+                                      DateOfBirthLoadingFinished(),
+                                    );
 
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(
@@ -157,7 +175,16 @@ class DateOfBirthForm extends StatelessWidget {
                                   }
                                 }
                               : null,
-                          child: const Text('Continue'),
+                          child: state.isLoading
+                              ? const SizedBox(
+                                  height: 24,
+                                  width: 24,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : const Text('Continue'),
                         ),
                       );
                     },

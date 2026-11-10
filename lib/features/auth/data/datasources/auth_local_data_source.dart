@@ -1,6 +1,6 @@
 
 import 'package:sqflite/sqflite.dart';
-import '../../../../../core/database/app_database.dart';
+import '../../../../core/database/app_database.dart';
 import '../models/auth_model.dart';
 
 class AuthLocalDataSource {

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/services.dart';
 
 import '../services/image_downloader.dart';
@@ -14,7 +15,10 @@ class ProductSeeder {
   Future<void> seedIfNeeded() async {
     final alreadySeeded = await localDataSource.hasProducts();
 
-    if (alreadySeeded) return;
+    if (alreadySeeded) {
+      await downloadMissingImages(await localDataSource.getProducts());
+      return;
+    }
 
     final jsonString = await rootBundle.loadString('assets/data/products.json');
 
@@ -26,21 +30,28 @@ class ProductSeeder {
 
     await localDataSource.insertProducts(products);
 
-    downloadMissingImages(products);
+    await downloadMissingImages(products);
   }
 
   Future<void> downloadMissingImages(List<ProductModel> products) async {
     for (final product in products) {
-      if (product.localImagePath != null) continue;
+      if (product.localImagePath != null &&
+          product.localImagePath!.isNotEmpty &&
+          await File(product.localImagePath!).exists()) {
+        continue;
+      }
 
-      final imagePath = await imageDownloader.download(
-        id: product.id,
-        imageUrl: product.imageUrl,
-      );
-
-      if (imagePath == null) continue;
-
-      await localDataSource.updateLocalImagePath(product.id, imagePath);
+      try {
+        final imagePath = await imageDownloader.download(
+          id: product.id,
+          imageUrl: product.imageUrl,
+        );
+        if (imagePath != null) {
+          await localDataSource.updateLocalImagePath(product.id, imagePath);
+        }
+      } catch (_) {
+        // Keep the seeded product usable even when its image is unavailable.
+      }
     }
   }
 }

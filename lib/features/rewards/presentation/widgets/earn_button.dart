@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/app_colors.dart';
+
 class EarnButton extends StatefulWidget {
   final bool isCompleted;
 
@@ -54,7 +56,7 @@ class _EarnButtonState extends State<EarnButton>
   @override
   Widget build(BuildContext context) {
     final backgroundColor = widget.isCompleted
-        ? const Color(0xFF55C9E5)
+        ? AppColors.primary
         : const Color(0xFFE5E5E5);
 
     return AnimatedBuilder(

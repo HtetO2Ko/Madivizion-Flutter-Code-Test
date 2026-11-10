@@ -15,3 +15,19 @@ class DateOfBirthSelected extends DateOfBirthEvent {
   @override
   List<Object?> get props => [date];
 }
+
+class DateOfBirthSubmitted extends DateOfBirthEvent {
+  const DateOfBirthSubmitted({
+    required this.phoneNumber,
+    required this.firstName,
+    required this.lastName,
+  });
+
+  final String phoneNumber;
+  final String firstName;
+  final String lastName;
+}
+
+class DateOfBirthLoadingStarted extends DateOfBirthEvent {}
+
+class DateOfBirthLoadingFinished extends DateOfBirthEvent {}

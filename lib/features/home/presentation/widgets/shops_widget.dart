@@ -1,45 +1,65 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_spacing.dart';
+import '../../../../core/theme/app_radius.dart';
+import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/widgets/app_skeleton.dart';
+import '../../../../core/widgets/app_local_image.dart';
 import '../../domain/entities/shop.dart';
 
 class ShopWidget extends StatelessWidget {
   final List<Shop> shops;
-  const new({super.key, required this.shops});
+  final String? errorMessage;
+  const ShopWidget({super.key, required this.shops, this.errorMessage});
 
   @override
   Widget build(BuildContext context) {
+    if (errorMessage != null) {
+      return Padding(
+        padding: const EdgeInsets.all(AppSpacing.md),
+        child: SectionErrorMessage(message: errorMessage!),
+      );
+    }
+
+    if (shops.isEmpty) {
+      return const Padding(
+        padding: EdgeInsets.all(AppSpacing.md),
+        child: SectionMessage(
+          message: 'No nearby shops are available right now.',
+          icon: Icons.storefront_outlined,
+        ),
+      );
+    }
+
     return Stack(
       children: [
         Image.asset(
           "assets/images/shop.png",
-          height: 500,
+          height: 460,
           width: MediaQuery.of(context).size.width,
           fit: BoxFit.cover,
           alignment: Alignment.topCenter,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.md,
+            vertical: AppSpacing.lg,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "There are ${shops.length} J'Donut shops\nnear you.",
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: AppTextStyles.title.copyWith(color: Colors.white),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: AppSpacing.lg),
               InkWell(
                 onTap: () {},
                 child: Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(AppRadius.pill),
                   ),
                   padding: const EdgeInsets.symmetric(
                     horizontal: 15,
@@ -49,62 +69,45 @@ class ShopWidget extends StatelessWidget {
                     "EXPLORE NOW",
                     style: TextStyle(
                       fontSize: 15,
-                      color: Color(0xFF53C2ED),
+                      color: AppColors.info,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: AppSpacing.lg),
               SizedBox(
-                height: 260,
+                height: 270,
                 child: ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: shops.length,
                   itemBuilder: (context, index) {
                     final shop = shops[index];
-
                     return Container(
                       width: 250,
-                      margin: const EdgeInsets.only(right: 12),
+                      margin: const EdgeInsets.only(right: AppSpacing.sm),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(AppRadius.md),
                       ),
-                      padding: const EdgeInsets.all(13),
+                      padding: const EdgeInsets.all(AppSpacing.md),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.circular(10),
-                            child:
-                                shop.localImagePath != null &&
-                                    shop.localImagePath!.isNotEmpty &&
-                                    File(shop.localImagePath!).existsSync()
-                                ? Image.file(
-                                    File(shop.localImagePath!),
-                                    height: 150,
-                                    width: double.infinity,
-                                    fit: BoxFit.cover,
-                                  )
-                                : Container(
-                                    height: 150,
-                                    width: double.infinity,
-                                    color: Colors.grey.shade200,
-                                    child: const Icon(
-                                      Icons.store,
-                                      size: 40,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
+                            child: AppLocalImage(
+                              path: shop.localImagePath,
+                              height: 150,
+                              width: double.infinity,
+                              fallbackIcon: Icons.store,
+                            ),
                           ),
-                          const SizedBox(height: 8),
+                          const SizedBox(height: AppSpacing.sm),
                           Text(
                             shop.name,
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.textPrimary,
+                            style: AppTextStyles.body.copyWith(
                               fontWeight: FontWeight.w600,
                             ),
                             maxLines: 2,
@@ -124,7 +127,7 @@ class ShopWidget extends StatelessWidget {
                             'Order Online',
                             style: TextStyle(
                               fontSize: 12,
-                              color: Color(0xFFFF529A),
+                              color: AppColors.secondary,
                               fontWeight: FontWeight.w600,
                             ),
                           ),

@@ -1,5 +1,15 @@
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+
+class DatabaseStorageException implements Exception {
+  const DatabaseStorageException(this.operation, this.cause);
+  final String operation;
+  final Object cause;
+
+  @override
+  String toString() => 'Local database failed during $operation.';
+}
 
 class AppDatabase {
   AppDatabase._();
@@ -20,8 +30,12 @@ class AppDatabase {
   Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await _initDatabase();
-    return _database!;
+    try {
+      _database = await _initDatabase();
+      return _database!;
+    } catch (error) {
+      throw DatabaseStorageException('open', error);
+    }
   }
 
   Future<Database> _initDatabase() async {
@@ -122,16 +136,24 @@ class AppDatabase {
     final databasePath = await getDatabasesPath();
     final path = join(databasePath, _databaseName);
 
-    await deleteDatabase(path);
+    try {
+      debugPrint("Deleting Database");
+      await deleteDatabase(path);
+      debugPrint("Deleted Database Successfully");
+    } catch (error) {
+      throw DatabaseStorageException('delete', error);
+    }
   }
 
   Future<void> deleteAllTables() async {
     final db = await database;
 
+    debugPrint("Deleting Tables");
     await db.delete(userTable);
     await db.delete(productTable);
     await db.delete(bannerTable);
     await db.delete(memberTable);
     await db.delete(shopTable);
+    debugPrint("Deleted Tables");
   }
 }

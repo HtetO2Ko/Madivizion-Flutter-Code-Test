@@ -12,8 +12,9 @@ class ProductRepositoryImpl implements ProductRepository {
   @override
   Future<Product?> getProductById(String id) async {
     final model = await localDataSource.getProductById(id);
+    if (model == null) return null;
     return Product(
-      id: model!.id,
+      id: model.id,
       code: model.code,
       name: model.name,
       priceMmk: model.priceMmk,
