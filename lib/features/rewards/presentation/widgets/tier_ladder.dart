@@ -64,34 +64,9 @@ class TierLadder extends StatelessWidget {
                 child: Column(
                   children: [
                     // Shield badge
-                    ColorFiltered(
-                      colorFilter: isCurrent
-                          ? const ColorFilter.mode(
-                              Colors.transparent,
-                              BlendMode.dst,
-                            )
-                          : const ColorFilter.matrix([
-                              0.2126,
-                              0.7152,
-                              0.0722,
-                              0,
-                              0,
-                              0.2126,
-                              0.7152,
-                              0.0722,
-                              0,
-                              0,
-                              0.2126,
-                              0.7152,
-                              0.0722,
-                              0,
-                              0,
-                              0,
-                              0,
-                              0,
-                              1,
-                              0,
-                            ]),
+                    AnimatedOpacity(
+                      duration: const Duration(milliseconds: 300),
+                      opacity: isCurrent ? 1.0 : 0.55,
                       child: ShieldBadge(type: _getBadgeType(index)),
                     ),
 

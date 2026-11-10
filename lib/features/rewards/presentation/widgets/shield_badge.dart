@@ -9,23 +9,23 @@ class ShieldBadge extends StatelessWidget {
 
   List<Color> get colors {
     switch (type) {
-      case BadgeType.gold:
-        return const [Color(0xFFFFE082), Color(0xFFFFB300), Color(0xFFB8860B)];
-
       case BadgeType.bronze:
-        return const [Color(0xFFFFFFFF), Color(0xFFBDBDBD), Color(0xFF757575)];
+        return const [Color(0xFFFFCC80), Color(0xFFCD7F32), Color(0xFF8D5524)];
+
+      case BadgeType.gold:
+        return const [Color(0xFFFFF176), Color(0xFFFFC107), Color(0xFFFF8F00)];
 
       case BadgeType.platinum:
-        return const [Color(0xFFB3E5FC), Color(0xFF42A5F5), Color(0xFF1565C0)];
+        return const [Color(0xFFBBDEFB), Color(0xFF42A5F5), Color(0xFF1565C0)];
     }
   }
 
   Color get textColor {
     switch (type) {
+      case BadgeType.bronze:
+        return const Color(0xFF5D3518);
       case BadgeType.gold:
         return const Color(0xFF704600);
-      case BadgeType.bronze:
-        return const Color(0xFF424242);
       case BadgeType.platinum:
         return const Color(0xFF0D47A1);
     }
