@@ -138,10 +138,9 @@ It handles navigation between onboarding, authentication, home, product details,
 The logout flow:
 
 1. User requests logout.
-2. Local database is cleared.
-3. Secure session information is removed.
-4. Application navigates to `/splash`.
-5. Splash checks the session and redirects to the appropriate screen.
+2. Secure session information is removed.
+3. Application navigates to `/splash`.
+4. Splash checks the session and redirects to the appropriate screen.
 
 ## 8. Offline Strategy
 
