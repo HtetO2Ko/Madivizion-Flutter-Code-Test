@@ -24,31 +24,36 @@ class RewardsTabs extends StatelessWidget {
       ),
       child: LayoutBuilder(
         builder: (context, constraints) {
-          final eatWidth = constraints.maxWidth * 0.7;
-          final giftWidth = constraints.maxWidth * 0.3;
+          final totalWidth = constraints.maxWidth;
+          // Exactly 70% for Tab 0, 30% for Tab 1
+          final tab0Width = totalWidth * 0.7;
+          final tab1Width = totalWidth * 0.3;
 
           return Stack(
             children: [
+              // Sliding background indicator
               AnimatedPositioned(
-                duration: const Duration(milliseconds: 180),
-                curve: Curves.easeOutCubic,
-                left: selectedIndex == 0 ? 0 : eatWidth,
+                duration: const Duration(milliseconds: 150),
+                curve: Curves.easeInOut,
+                left: selectedIndex == 0 ? 0 : tab0Width,
                 top: 0,
                 bottom: 0,
-                width: selectedIndex == 0 ? eatWidth : giftWidth,
-                child: IgnorePointer(
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      color: AppColors.primary,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
+                width: selectedIndex == 0 ? tab0Width : tab1Width,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: AppColors.primary,
+                    borderRadius: BorderRadius.circular(30),
                   ),
                 ),
               ),
+              // Interactive tap targets
               Row(
                 children: [
-                  Expanded(flex: 7, child: _buildTab('Eat more earn more', 0)),
-                  Expanded(flex: 3, child: _buildTab('Gift', 1)),
+                  SizedBox(
+                    width: tab0Width,
+                    child: _buildTab('Eat more earn more', 0),
+                  ),
+                  SizedBox(width: tab1Width, child: _buildTab('Gift', 1)),
                 ],
               ),
             ],
@@ -70,22 +75,20 @@ class RewardsTabs extends StatelessWidget {
             onChanged(index);
           }
         },
-        child: SizedBox.expand(
-          child: Center(
-            child: AnimatedDefaultTextStyle(
-              duration: const Duration(milliseconds: 120),
-              curve: Curves.easeOut,
-              style: TextStyle(
-                fontSize: 12,
-                color: isSelected ? Colors.white : AppColors.textPrimary,
-                fontWeight: FontWeight.w600,
-              ),
-              child: Text(
-                title,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-              ),
+        child: Center(
+          child: AnimatedDefaultTextStyle(
+            duration: const Duration(milliseconds: 100),
+            curve: Curves.easeInOut,
+            style: TextStyle(
+              fontSize: 12,
+              color: isSelected ? Colors.white : AppColors.textPrimary,
+              fontWeight: FontWeight.w600,
+            ),
+            child: Text(
+              title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
             ),
           ),
         ),
