@@ -23,7 +23,7 @@ import 'features/home/domain/repositories/banner_repository.dart';
 import 'features/home/domain/repositories/member_repository.dart';
 import 'features/home/domain/repositories/product_repository.dart';
 import 'features/home/domain/repositories/shop_repository.dart';
-import 'features/setting/data/settings_repository_impl.dart';
+import 'features/setting/data/repositories/settings_repository_impl.dart';
 import 'features/setting/domain/repositories/settings_repository.dart';
 
 final getIt = GetIt.instance;

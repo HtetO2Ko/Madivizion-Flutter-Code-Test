@@ -41,7 +41,7 @@ class OnboardingContent extends StatelessWidget {
 
                     const SizedBox(height: 10),
 
-                    _buildThirdPartyAccount(),
+                    _buildThirdPartyAccount(context),
 
                     const SizedBox(height: 20),
 
@@ -102,25 +102,33 @@ class OnboardingContent extends StatelessWidget {
     );
   }
 
-  Widget _buildThirdPartyAccount() {
+  Widget _buildThirdPartyAccount(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _buildSocialButton('google'),
+        _buildSocialButton(context, 'google'),
         const SizedBox(width: 10),
-        _buildSocialButton('apple'),
+        _buildSocialButton(context, 'apple'),
         const SizedBox(width: 10),
-        _buildSocialButton('facebook'),
+        _buildSocialButton(context, 'facebook'),
       ],
     );
   }
 
-  Widget _buildSocialButton(String icon) {
-    return SizedBox(
-      width: 50,
-      height: 50,
-      child: Center(
-        child: Image.asset('assets/icons/$icon.png', width: 26, height: 26),
+  Widget _buildSocialButton(BuildContext context, String icon) {
+    return InkWell(
+      onTap: () {
+        context.pushNamed(
+          AppRouteNames.placeSheet,
+          queryParameters: {'page': icon},
+        );
+      },
+      child: SizedBox(
+        width: 50,
+        height: 50,
+        child: Center(
+          child: Image.asset('assets/icons/$icon.png', width: 26, height: 26),
+        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:j_donut/core/widgets/place_sheet.dart';
 import 'package:j_donut/features/tabbar/presentation/screens/tabbar_screen.dart';
 import 'package:j_donut/features/welcome/presentation/screens/welcome_screen.dart';
 
@@ -21,6 +22,15 @@ class AppRouter {
         path: '/splash',
         name: 'splash',
         builder: (context, state) => const AppStartupScreen(),
+      ),
+
+      GoRoute(
+        path: '/place-sheet',
+        name: AppRouteNames.placeSheet,
+        builder: (context, state) {
+          final page = state.uri.queryParameters['page'] ?? '';
+          return PlaceSheet(page: page);
+        },
       ),
 
       GoRoute(

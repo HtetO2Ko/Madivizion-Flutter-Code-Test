@@ -1,6 +1,8 @@
 class AppRouteNames {
   AppRouteNames._();
 
+  static const String placeSheet = 'place-sheet';
+
   static const String onboarding = 'onboarding';
   static const String phoneNumber = 'phone-number';
   static const String otp = 'otp';
