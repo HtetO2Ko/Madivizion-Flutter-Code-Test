@@ -6,8 +6,9 @@ import 'package:path_provider/path_provider.dart';
 
 class ImageDownloader {
   final Dio dio;
+  final String folderName;
 
-  ImageDownloader(this.dio);
+  ImageDownloader(this.dio, {this.folderName = 'images'});
 
   Future<String?> download({
     required String id,
@@ -16,21 +17,16 @@ class ImageDownloader {
     try {
       final directory = await getApplicationDocumentsDirectory();
 
-      final imageDirectory = Directory(
-        path.join(directory.path, 'product_images'),
-      );
+      final imageDirectory = Directory(path.join(directory.path, folderName));
 
       if (!await imageDirectory.exists()) {
         await imageDirectory.create(recursive: true);
       }
 
       final extension = _getImageExtension(imageUrl);
-
       final filePath = path.join(imageDirectory.path, '$id$extension');
-
       final file = File(filePath);
 
-      // Reuse an existing downloaded image.
       if (await file.exists() && await file.length() > 0) {
         return filePath;
       }

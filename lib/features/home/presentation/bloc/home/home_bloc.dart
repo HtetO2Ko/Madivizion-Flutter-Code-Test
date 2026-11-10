@@ -6,18 +6,21 @@ import '../../../../auth/domain/repositories/auth_repository.dart';
 import '../../../domain/repositories/banner_repository.dart';
 import '../../../domain/repositories/member_repository.dart';
 import '../../../domain/repositories/product_repository.dart';
+import '../../../domain/repositories/shop_repository.dart';
 import 'home_event.dart';
 import 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final AuthRepository authRepository;
   final ProductRepository productRepository;
+  final ShopRepository shopRepository;
   final BannerRepository bannerRepository;
   final MemberRepository memberRepository;
 
   HomeBloc({
     required this.authRepository,
     required this.productRepository,
+    required this.shopRepository,
     required this.bannerRepository,
     required this.memberRepository,
   }) : super(HomeInitial()) {
@@ -56,10 +59,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       final products = await productRepository.getProducts();
 
+      final shops = await shopRepository.getShops();
+
       emit(
         HomeSuccess(
           user: user,
           products: products,
+          shops: shops,
           member: member,
           banners: banners,
         ),

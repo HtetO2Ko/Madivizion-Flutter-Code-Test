@@ -92,7 +92,6 @@ class ProductWidget extends StatelessWidget {
                                       product.localImagePath!.isNotEmpty
                                   ? Image.file(
                                       File(product.localImagePath!),
-                                      fit: BoxFit.contain,
                                       errorBuilder: (_, __, ___) =>
                                           const Icon(Icons.image_not_supported),
                                     )

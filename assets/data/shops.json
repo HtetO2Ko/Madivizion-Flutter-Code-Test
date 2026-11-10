@@ -1,0 +1,30 @@
+[
+  {
+    "id": "shop_111111",
+    "name": "Mayangone J'Donut",
+    "address": "No(100), Insein Road , (3)Ward , Mayangone Township, Yangon",
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/shops/shop1.png",
+    "localImagePath": null
+  },
+  {
+    "id": "shop_111112",
+    "name": "Thaketa J'Donut",
+    "address": "No(32), Zingama Street, 2/North Ward, Thaketa Township, Yangon",
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/shops/shop2.png",
+    "localImagePath": null
+  },
+  {
+    "id": "shop_111113",
+    "name": "Sanchaung J'Donut",
+    "address": "Address-No.(199/1), Corner of Kyaung Kone Street & Baho Road, Linn Loon (North) Wards , Sanchaung Township, Yangon",
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/shops/shop3.png",
+    "localImagePath": null
+  },
+  {
+    "id": "shop_111114",
+    "name": "Tamwe J'Donut",
+    "address": "No(49)(A-1), Thadi Pahtan Street, Ma Hlwa Gone Htay Kywe (Ka) Ward , Tamwe Township, Yangon.",
+    "imageUrl": "https://br-winter-glade-bee3omcg.storage.c-9.us-east-2.aws.neon.tech/images/shops/shop4.png",
+    "localImagePath": null
+  }
+]

@@ -6,11 +6,13 @@ import '../../../auth/domain/repositories/auth_repository.dart';
 import '../../domain/repositories/banner_repository.dart';
 import '../../domain/repositories/member_repository.dart';
 import '../../domain/repositories/product_repository.dart';
+import '../../domain/repositories/shop_repository.dart';
 import '../bloc/home/home_bloc.dart';
 import '../bloc/home/home_event.dart';
 import '../bloc/home/home_state.dart';
 import '../widgets/header/home_header.dart';
 import '../widgets/products_widget.dart';
+import '../widgets/shops_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -23,6 +25,7 @@ class HomeScreen extends StatelessWidget {
         bannerRepository: getIt<BannerRepository>(),
         memberRepository: getIt<MemberRepository>(),
         productRepository: getIt<ProductRepository>(),
+        shopRepository: getIt<ShopRepository>(),
       )..add(HomeLoadedEvent()),
       child: const _HomeView(),
     );
@@ -74,6 +77,8 @@ class _HomeView extends StatelessWidget {
                     products: state.products,
                     size: {"height": 180.0, "width": 180.0},
                   ),
+                  const SizedBox(height: 20),
+                  ShopWidget(shops: state.shops),
                   const SizedBox(height: 40),
                 ],
               ),
