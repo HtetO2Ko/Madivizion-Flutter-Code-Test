@@ -204,6 +204,6 @@ The application uses a simulated OTP verification flow for demonstration purpose
 Enter this six-digit code to complete OTP verification.
 
 
-## 13. Time Spent
+## 11. Time Spent
 
 **Total development time:** 18 hours
